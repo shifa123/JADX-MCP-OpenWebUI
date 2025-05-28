@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "JADX-AI Tool Server",
+    "version": "1.0.0",
+    "description": "Reverse-engineering helper endpoints exposed for Open WebUI / Llama."
+  },
+  "paths": {
+    "/fetch_current_class": {
+      "get": {
+        "summary": "Fetch the currently opened class",
+        "operationId": "fetch_current_class",
+        "responses": { "200": { "description": "OK", "content": { "application/json": { } } } }
+      }
+    },
+    "/get_selected_text": {
+      "get": {
+        "summary": "Return selected text",
+        "operationId": "get_selected_text",
+        "responses": { "200": { "description": "OK", "content": { "application/json": { } } } }
+      }
+    },
+    "/get_method_by_name": {
+      "get": {
+        "summary": "Get a method's code by class & name",
+        "operationId": "get_method_by_name",
+        "parameters": [
+          { "name": "class_name",  "in": "query", "required": true,  "schema": { "type": "string" } },
+          { "name": "method_name", "in": "query", "required": true,  "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "OK", "content": { "application/json": { } } } }
+      }
+    },
+    "/get_all_classes": {
+      "get": {
+        "summary": "List all classes",
+        "operationId": "get_all_classes",
+        "parameters": [
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "minimum": 0 }, "required": false },
+          { "name": "count",  "in": "query", "schema": { "type": "integer", "minimum": 0 }, "required": false }
+        ],
+        "responses": { "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "array", "items": { "type": "string" } } } } } }
+      }
+    },
+
+    /* ----------- SNIP  (same pattern for every remaining endpoint) ----------- */
+
+    "/get_main_activity_class": {
+      "get": {
+        "summary": "Get main activity class",
+        "operationId": "get_main_activity_class",
+        "responses": { "200": { "description": "OK", "content": { "application/json": { } } } }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health-check",
+        "operationId": "health",
+        "responses": { "200": { "description": "OK", "content": { "application/json": { } } } }
+      }
+    }
+  }
+}
+
